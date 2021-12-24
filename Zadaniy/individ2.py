@@ -6,11 +6,11 @@ import click
 
 
 @click.group()
-def cli():
+def cliс():
     pass
 
 
-@cli.command()
+@cliс.command()
 @click.argument('filename')
 @click.option("-n", "--name")
 @click.option("-z", "--zodiac")
@@ -32,7 +32,7 @@ def add(filename, name, zodiac, year):
     click.secho("Человек добавлен", fg='blue')
 
 
-@cli.command()
+@cliс.command()
 @click.argument('filename')
 def display(filename):
     """
@@ -69,7 +69,7 @@ def display(filename):
     print(line)
 
 
-@cli.command()
+@cliс.command()
 @click.argument('filename')
 def select(filename):
     """
@@ -118,7 +118,7 @@ def load_people(file_name):
 
 
 def main():
-    cli()
+    cliс()
 
 
 if __name__ == '__main__':
