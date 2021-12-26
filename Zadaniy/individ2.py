@@ -6,11 +6,11 @@ import click
 
 
 @click.group()
-def cliс():
+def clic():
     pass
 
 
-@cliс.command()
+@clic.command()
 @click.argument('filename')
 @click.option("-n", "--name")
 @click.option("-z", "--zodiac")
@@ -32,7 +32,7 @@ def add(filename, name, zodiac, year):
     click.secho("Человек добавлен", fg='blue')
 
 
-@cliс.command()
+@clic.command()
 @click.argument('filename')
 def display(filename):
     """
@@ -44,11 +44,11 @@ def display(filename):
         '-' * 4,
         '-' * 30,
         '-' * 20,
-        '-' * 15
+        '-' * 20
     )
     print(line)
     print(
-        '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+        '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
             "№",
             "Ф.И.О.",
             "Знак Зодиака",
@@ -59,7 +59,7 @@ def display(filename):
     # Вывести данные о всех людях.
     for idx, human in enumerate(people, 1):
         print(
-            '| {:>4} | {:<30} | {:<20} | {:>15} |'.format(
+            '| {:>4} | {:<30} | {:<20} | {:>20} |'.format(
                 idx,
                 human['name'],
                 human['zodiac'],
@@ -69,7 +69,7 @@ def display(filename):
     print(line)
 
 
-@cliс.command()
+@click.command()
 @click.argument('filename')
 def select(filename):
     """
@@ -82,11 +82,11 @@ def select(filename):
         '-' * 4,
         '-' * 30,
         '-' * 20,
-        '-' * 15
+        '-' * 20
     )
     print(line)
     print(
-        '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+        '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
             "№",
             "Ф.И.О.",
             "Знак Зодиака",
@@ -98,7 +98,7 @@ def select(filename):
         if who == num['name']:
             count += 1
             print(
-                '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+                '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
                     count,
                     num['name'],
                     num['zodiac'],
@@ -112,14 +112,9 @@ def load_people(file_name):
     """
     Загрузить всех людей из файла JSON
     """
-
     with open(file_name, "r", encoding="utf-8") as fin:
         return json.load(fin)
 
 
-def main():
-    cliс()
-
-
 if __name__ == '__main__':
-    main()
+    clic()

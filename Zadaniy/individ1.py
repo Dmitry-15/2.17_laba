@@ -30,11 +30,11 @@ def display_people(people):
             '-' * 4,
             '-' * 30,
             '-' * 20,
-            '-' * 15
+            '-' * 20
         )
         print(line)
         print(
-            '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+            '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
                 "№",
                 "Ф.И.О.",
                 "Знак Зодиака",
@@ -45,7 +45,7 @@ def display_people(people):
         # Вывести данные о всех людях.
         for idx, human in enumerate(people, 1):
             print(
-                '| {:>4} | {:<30} | {:<20} | {:>15} |'.format(
+                '| {:>4} | {:<30} | {:<20} | {:>20} |'.format(
                     idx,
                     human['name'],
                     human['zodiac'],
@@ -65,11 +65,11 @@ def whois(people):
         '-' * 4,
         '-' * 30,
         '-' * 20,
-        '-' * 15
+        '-' * 20
     )
     print(line)
     print(
-        '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+        '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
             "№",
             "Ф.И.О.",
             "Знак Зодиака",
@@ -81,7 +81,7 @@ def whois(people):
         if who == num['name']:
             count += 1
             print(
-                '| {:^4} | {:^30} | {:^20} | {:^15} |'.format(
+                '| {:^4} | {:^30} | {:^20} | {:^20} |'.format(
                     count,
                     num['name'],
                     num['zodiac'],
@@ -92,6 +92,9 @@ def whois(people):
 
 
 def save_people(file_name, people):
+    """
+    Сохранить всех работников в файл JSON.
+    """
     with open(file_name, "w", encoding="utf-8") as fout:
         json.dump(people, fout, ensure_ascii=False, indent=4)
 
@@ -100,7 +103,6 @@ def load_people(file_name):
     """
     Загрузить всех людей из файла JSON
     """
-
     with open(file_name, "r", encoding="utf-8") as fin:
         return json.load(fin)
 
@@ -198,7 +200,6 @@ def main(command_line=None):
     # Выбрать требуемых людей.
     elif args.command == "select":
         whois(people)
-        display_people(people)
 
     # Сохранить данные в файл, если список людей был изменен.
     if is_dirty:
